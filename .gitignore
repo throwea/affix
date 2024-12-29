@@ -1,0 +1,30 @@
+# environment
+.env
+.envrc
+*.db
+
+# builds
+dist
+build
+.next
+
+# packages
+node_modules
+
+# MacOS moment
+.DS_Store
+
+# python moment
+__pycache__
+venv
+.venv
+
+# logs
+*.log
+
+# Pyenv
+*.python-version
+
+.ruff_cache
+.vscode/settings.json
+.vscode/launch.json
