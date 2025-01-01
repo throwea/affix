@@ -1,0 +1,13 @@
+TODO:
+
+- elian/postgres-setup:
+	- how are we going to encode a CSV? Maybe we don't need to encode a CSV at all. Just take raw string. Then do validations on it in the backend
+	- consolidate documents for setup
+
+Needed features for MVP
+- Should be able to send a CSV to a handler
+- Once the CSV hits the backend we should preprocess it and upload the data to the Postgres database
+- Once the data is in the csv we should be able to ask a question about the data
+- The user's request should create an SQL query on the backend and propagate the answer, the data supporting (in csv form) and the SQL query used
+
+
