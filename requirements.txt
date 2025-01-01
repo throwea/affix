@@ -34,3 +34,4 @@ watchfiles==1.0.3
 websockets==14.1
 loguru==0.7.3
 prisma==0.15.0
+openai==1.58.1
