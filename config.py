@@ -7,3 +7,4 @@ load_dotenv(override=True)  # override option ensure System Env variables are ov
 #WARN: if I'm seeing conflicts with other environment variables during local development just use a json config file
 # All .env variables
 BDOOR = os.environ["BDOOR"]
+OPENAI_KEY = os.environ["OPENAI_KEY"]
