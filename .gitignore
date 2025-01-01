@@ -28,3 +28,6 @@ venv
 .ruff_cache
 .vscode/settings.json
 .vscode/launch.json
+
+#Personal files
+TODO.txt
