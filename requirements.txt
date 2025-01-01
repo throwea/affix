@@ -35,3 +35,4 @@ websockets==14.1
 loguru==0.7.3
 prisma==0.15.0
 openai==1.58.1
+pandas==2.2.3
