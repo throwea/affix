@@ -1,5 +1,7 @@
 from fastapi import FastAPI, Request
 import time
+import pandas as pd
+import models.models as m
 
 app = FastAPI()
 
@@ -20,3 +22,14 @@ async def add_process_time_header(request: Request, call_next):
     process_time = (time.perf_counter() - start_time) * 1000 #milliseconds
     response.headers["X-Process-Time"] = str(f"{process_time} ms")
     return response
+
+@app.post("/data")
+async def send_data(request: Request, data: m.DataSubmit):
+    """
+    This routes accept tabular data that is encoded in some way
+    and saves the information to the DB
+    """
+    #for now assume input is a giant string for the CSV
+
+    
+
