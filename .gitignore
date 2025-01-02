@@ -31,3 +31,4 @@ venv
 
 #Personal files
 TODO.txt
+*.csv

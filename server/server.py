@@ -1,17 +1,12 @@
 from contextlib import asynccontextmanager
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, HTTPException, Request
 import time
 import pandas as pd
 import models.models as m
 import config as cfg
 from sqlalchemy import create_engine
-
-@asynccontextmanager
-async def lifespan():
-    #establish connection to the db
-    engine = create_engine(url=cfg.AFFIX_DB_URL)
-    yield
-    
+from middleware.logger import logger
+from llm.pipelines import execute_pipeline
 
 app = FastAPI(lifespan=lifespan)
 
@@ -32,13 +27,21 @@ async def add_process_time_header(request: Request, call_next):
     response.headers["X-Process-Time"] = str(f"{process_time} ms")
     return response
 
-@app.post("/data")
-async def send_data(request: Request, data: m.DataSubmit):
+@app.post("/chat", response_model=m.ChatResponse)
+async def chat(request: Request, data: m.ChatRequest):
     """
     This routes accept tabular data that is encoded in some way
     and saves the information to the DB
     """
-    #for now assume input is a giant string for the CSV
+    try:
+        res = execute_pipeline(data.user_msg)
+        response = m.ChatResponse(response=res, success=True)
+        return response
+    except Exception as e:
+        logger.error(f"chat failed. User msg: {data.user_msg}, User ID: {data.user_id}")
+        raise HTTPException(status_code=500, detail="internal failure") #TODO: add error class to capture and propagate errors to frontend
+
+
 
     
 

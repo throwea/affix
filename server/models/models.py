@@ -1,4 +1,10 @@
 from pydantic import BaseModel
 
-class DataSubmit(BaseModel):
-    tabular_data: str | None
+class ChatRequest(BaseModel):
+    user_msg: str 
+    user_id: str
+
+class ChatResponse(BaseModel):
+    response: str
+    success: int
+
