@@ -8,3 +8,4 @@ load_dotenv(override=True)  # override option ensure System Env variables are ov
 # All .env variables
 BDOOR = os.environ["BDOOR"]
 OPENAI_KEY = os.environ["OPENAI_KEY"]
+AFFIX_DB_URL = os.environ["AFFIX_DB_URL"]

@@ -1,10 +1,19 @@
+from contextlib import asynccontextmanager
 from fastapi import FastAPI, Request
 import time
 import pandas as pd
 import models.models as m
+import config as cfg
+from sqlalchemy import create_engine
 
-app = FastAPI()
+@asynccontextmanager
+async def lifespan():
+    #establish connection to the db
+    engine = create_engine(url=cfg.AFFIX_DB_URL)
+    yield
+    
 
+app = FastAPI(lifespan=lifespan)
 
 @app.get("/")
 async def root():
